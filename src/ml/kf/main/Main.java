@@ -3,6 +3,7 @@ package ml.kf.main;
 import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 import ml.kf.qv.swing.*;
 import ml.kf.qv.swing.Icon;
+import ml.kf.qv.swing.flat.FlatButton;
 import ml.kf.qv.swing.larrv.models.Effect;
 import ml.kf.qv.swing.larrv.models.ElementColor;
 import ml.kf.qv.swing.larrv.models.LarrStyle;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Ibrahim Maïga.
+ * @author Kanfa.
  *
  * CLass Main
  */
@@ -27,7 +28,7 @@ public class Main {
      */
     public static void main(String[] args){
         SwingUtilities.invokeLater(
-                () ->{
+                () -> {
                     try {
                         UIManager.setLookAndFeel(new WindowsLookAndFeel());
                     } catch (UnsupportedLookAndFeelException e) {
@@ -100,7 +101,7 @@ public class Main {
         remove.addActionListener(
                 e -> {
                     if (larrView.getSelected() != null){
-                        int response = JOptionPane.showConfirmDialog(null, "Etes-vous sûr de vouloir suppprimer cet element ?",
+                        int response = JOptionPane.showConfirmDialog(null, "Etes-vous sûr de vouloir supprimer cet element ?",
                                                                      "Demande de supression", JOptionPane.YES_NO_OPTION);
                         if (response == JOptionPane.YES_OPTION){
                             larrView.removeSelected();
@@ -111,7 +112,7 @@ public class Main {
 
         removeAll.addActionListener(
                 e -> {
-                    int response = JOptionPane.showConfirmDialog(null, "Etes-vous sûr de vouloir tout suppprimer ?",
+                    int response = JOptionPane.showConfirmDialog(null, "Etes-vous sûr de vouloir tout supprimer ?",
                                                                  "Demande de supression", JOptionPane.YES_NO_OPTION);
                     if (response == JOptionPane.YES_OPTION){
                         larrView.removeLarrComponents();
