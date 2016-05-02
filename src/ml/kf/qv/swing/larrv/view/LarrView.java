@@ -28,6 +28,7 @@ public class LarrView extends BasePanel implements KeyListener, Updater {
      */
     private static final int VSPACE = 2;
     private static final int FIRST = 0;
+    private static final int SCROLLBAR_WIDTH = 10;
     private static final String DEFAULT_ICON_NAME = "search.png";
     private static final Dimension DEFAULT_DIMENSION = new Dimension(110, 50);
 
@@ -70,11 +71,6 @@ public class LarrView extends BasePanel implements KeyListener, Updater {
      * LarrComponents list
      */
     private List<LarrComponent> larrComponents;
-
-    /**
-     * AbstractLarrModel
-     */
-    private AbstractLarrModel larrModel;
 
     /**
      * LarrElement
@@ -124,8 +120,8 @@ public class LarrView extends BasePanel implements KeyListener, Updater {
         this.larrElements = larrElements;
         this.active = active;
         this.style = style;
-        this.larrModel = new LarrModel(this);
-        this.controller = new LarrController(this.larrModel);
+        AbstractLarrModel larrModel = new LarrModel(this);
+        this.controller = new LarrController(larrModel);
         this.larrComponents = new ArrayList<>();
         this.createLarrComponents();
         this.checker = new LarrComponentChecker(this.larrComponents);
@@ -138,7 +134,7 @@ public class LarrView extends BasePanel implements KeyListener, Updater {
         this.center.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
         this.content.setLayout(new BorderLayout());
         this.left.setLayout(null);
-        UIManager.put("ScrollBar.width", 10);
+        UIManager.put("ScrollBar.width", SCROLLBAR_WIDTH);
         this.scrollPane = new JScrollPane(this.left, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         this.addViews();
         if (active) {
@@ -207,7 +203,7 @@ public class LarrView extends BasePanel implements KeyListener, Updater {
 
     /**
      * Calculates and returns the appropriate size
-     * @return
+     * @return calcuate Dimension
      */
     private Dimension calcDimension(){
         this.width = this.getMaxDimension().width + 2;
@@ -218,7 +214,7 @@ public class LarrView extends BasePanel implements KeyListener, Updater {
 
     /**
      * Returns the maximum dimension of <code>LarrComponent</code>
-     * @return
+     * @return max dimension
      */
     private Dimension getMaxDimension() {
         if (this.larrComponents.isEmpty()) {
@@ -235,7 +231,7 @@ public class LarrView extends BasePanel implements KeyListener, Updater {
     }
 
     /**
-     * Gives the same size <code>LarrComponent</code>
+     * Gives the same size to the <code>LarrComponent</code>
      */
     private void attributeSameDimension() {
         int i = 0;
@@ -248,17 +244,16 @@ public class LarrView extends BasePanel implements KeyListener, Updater {
     }
 
     /**
-     * Instanciates <code>LarrComponents</code>
+     * create <code>LarrComponents</code>
      */
     private void createLarrComponents() {
-        int[] i = new int[1];
-        i[0] = 0;
+        int i = 0;
         for (LarrElement larrElement : this.larrElements) {
-            LarrComponent larrComponent = new LarrComponent(i[0], larrElement.getTitle(), this.style);
+            LarrComponent larrComponent = new LarrComponent(i, larrElement.getTitle(), this.style);
             larrComponent.setReceive(this.center);
             larrComponent.setRight(larrElement.getComponent());
             this.larrComponents.add(larrComponent);
-            i[0] = i[0] + 1;
+            i += 1;
         }
     }
 
@@ -272,7 +267,7 @@ public class LarrView extends BasePanel implements KeyListener, Updater {
     }
 
     /**
-     *
+     * Getter
      * @return true if search panel is activate
      */
     public boolean isActive() {
@@ -321,8 +316,7 @@ public class LarrView extends BasePanel implements KeyListener, Updater {
     public void setLarrComponents(ArrayList<LarrComponent> larrComponents) {
         this.larrComponents.stream().filter(larrComponent -> larrComponent.isSelected()).forEach(larrComponent -> {
             larrComponent.setSelected(false);
-            larrComponent.setChanged(true);
-            larrComponent.reset();
+            larrComponent.init();
         });
         this.larrComponents = larrComponents;
     }
@@ -361,20 +355,12 @@ public class LarrView extends BasePanel implements KeyListener, Updater {
         this.larrElements.remove(index);
     }
 
-    /**
-     *
-     * @param components
-     */
     private void removeAll(JComponent... components){
         for (JComponent component : components){
             component.removeAll();
         }
     }
 
-    /**
-     *
-     * @param components
-     */
     private void revalidateAll(JComponent... components){
         for (JComponent component : components){
             component.revalidate();
@@ -382,7 +368,7 @@ public class LarrView extends BasePanel implements KeyListener, Updater {
     }
 
     /**
-     * Removes this selected  <code>LarrComponent</code>
+     * Removes selected <code>LarrComponent</code>
      */
     public void removeSelected() {
         if (this.selectedLarrComponent != null){
@@ -431,7 +417,7 @@ public class LarrView extends BasePanel implements KeyListener, Updater {
 
     /**
      * Returns last index
-     * @return
+     * @return last index
      */
     public int getLastIndex() {
         return this.larrComponents.size();
@@ -545,9 +531,9 @@ public class LarrView extends BasePanel implements KeyListener, Updater {
 
         /**
          * Create a new <code>Larrcomponent</code> with id, title and style
-         * @param index
-         * @param text
-         * @param style
+         * @param index <code>LarrComponent</code> id
+         * @param text <code>LarrComponent</code> title
+         * @param style <code>LarrComponent</code> style
          */
         public LarrComponent(int index, String text, LarrStyle style) {
             this.index = index;
@@ -774,7 +760,6 @@ public class LarrView extends BasePanel implements KeyListener, Updater {
          */
         public void mouseClicked(MouseEvent e) {
             this.selected();
-            //setData(this.index);
         }
         public void mouseEntered(MouseEvent e) {
             this.hover();
@@ -788,8 +773,9 @@ public class LarrView extends BasePanel implements KeyListener, Updater {
 
 
     /**
-     * Class LarrComponent Checker
+     * Class LarrComponentChecker
      */
+
     public class LarrComponentChecker implements Checker, KeyAction {
 
         /**
@@ -832,11 +818,11 @@ public class LarrView extends BasePanel implements KeyListener, Updater {
         }
 
         @Override public boolean selectFirst(int lastIndex) {
-            boolean bool = (lastIndex == - 1) && this.larrComponents.size() >= 1;
-            if (bool){
+            boolean emptySelection = (lastIndex == - 1) && this.larrComponents.size() >= 1;
+            if (emptySelection){
                 this.larrComponents.get(FIRST).selected();
             }
-            return bool;
+            return emptySelection;
         }
     }
 
