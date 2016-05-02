@@ -12,6 +12,8 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @author Kanfa
@@ -39,7 +41,6 @@ public abstract class Alert extends JWindow implements Runnable, MouseListener{
     }
 
     protected JPanel container;
-    private Thread thread;
     private JComponent component;
     protected JProgressBar progress;
     private boolean stop = false;
@@ -208,8 +209,9 @@ public abstract class Alert extends JWindow implements Runnable, MouseListener{
         this.setContentPane(this.container);
         this.pack();
         this.setVisible(true);
-        this.thread = new Thread(this);
-        this.thread.start();
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(this);
+        executor.shutdown();
     }
 
     /**
@@ -250,9 +252,7 @@ public abstract class Alert extends JWindow implements Runnable, MouseListener{
                             this.progress.setValue((int) (MAX * i));
                         }
                         Thread.sleep(this.time);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                    } catch (InterruptedException e) {e.printStackTrace();}
                 } else {
                     i = INITIAL;
                     if (this.showProgress) {
@@ -262,7 +262,7 @@ public abstract class Alert extends JWindow implements Runnable, MouseListener{
                 setOpacity(i);
             }
             else{
-                i = -1;
+                i = -INITIAL;
             }
         }
         dispose();
