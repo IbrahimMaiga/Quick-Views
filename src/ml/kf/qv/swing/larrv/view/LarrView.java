@@ -253,7 +253,7 @@ public class LarrView extends BasePanel implements KeyListener, Updater {
             larrComponent.setReceive(this.center);
             larrComponent.setRight(larrElement.getComponent());
             this.larrComponents.add(larrComponent);
-            i += 1;
+            i++;
         }
     }
 
@@ -823,6 +823,13 @@ public class LarrView extends BasePanel implements KeyListener, Updater {
                 this.larrComponents.get(FIRST).selected();
             }
             return emptySelection;
+        }
+    }
+
+    public class LarrWorker extends SwingWorker<String, String>{
+
+        @Override protected String doInBackground() throws Exception {
+            return null;
         }
     }
 

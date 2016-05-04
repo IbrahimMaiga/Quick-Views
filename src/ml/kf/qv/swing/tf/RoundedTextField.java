@@ -47,7 +47,7 @@ public class RoundedTextField extends JTextField{
     }
 
     /**
-     * Create a new constructor with default round arc
+     * Create a new constructor with default values
      * @param round
      */
    public RoundedTextField(Round round){
@@ -70,9 +70,9 @@ public class RoundedTextField extends JTextField{
         Graphics2D g2d = (Graphics2D)g.create();
         g2d.setColor(getBackground());
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2d.fillRoundRect(0, 0, getWidth()-1, getHeight()-1, this.round.getArcx(), this.round.getArcy());
+        g2d.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, this.round.getArcx(), this.round.getArcy());
         if (image != null){
-		    g2d.drawImage(image, 5, this.getPreferredSize().height/2 - icon.getIconHeight()/2, null);
+		    g2d.drawImage(image, 5, this.getPreferredSize().height / 2 - icon.getIconHeight() / 2, null);
 		}
         super.paintComponent(g2d);
     }
@@ -128,7 +128,7 @@ public class RoundedTextField extends JTextField{
         }
         else {
             this.icon = (new Icon(name)).getIcon();
-            image = icon.getImage();
+            this.image = this.icon.getImage();
         }
         if (repaint) this.repaint();
     }
