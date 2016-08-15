@@ -1,6 +1,6 @@
-package ml.kf.qv.swing.larrv.controller;
+package ml.kf.qv.swing.larrv;
 
-import ml.kf.qv.swing.larrv.models.AbstractLarrModel;
+import ml.kf.qv.swing.larrv.AbstractLarrModel;
 
 import java.awt.event.KeyEvent;
 

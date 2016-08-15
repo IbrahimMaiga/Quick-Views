@@ -1,6 +1,6 @@
-package ml.kf.qv.swing.larrv.models;
+package ml.kf.qv.swing.larrv;
 
-import ml.kf.qv.swing.larrv.view.LarrView;
+import ml.kf.qv.swing.larrv.component.LarrView;
 
 /**
  * @author Kanfa.

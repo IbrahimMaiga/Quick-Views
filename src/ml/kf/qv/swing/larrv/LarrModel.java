@@ -1,4 +1,4 @@
-package ml.kf.qv.swing.larrv.models;
+package ml.kf.qv.swing.larrv;
 
 /**
  * @author Kanfa.
