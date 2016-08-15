@@ -3,12 +3,11 @@ package ml.kf.main;
 import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 import ml.kf.qv.swing.*;
 import ml.kf.qv.swing.Icon;
-import ml.kf.qv.swing.flat.FlatButton;
-import ml.kf.qv.swing.larrv.models.Effect;
-import ml.kf.qv.swing.larrv.models.ElementColor;
-import ml.kf.qv.swing.larrv.models.LarrStyle;
-import ml.kf.qv.swing.larrv.view.LarrElement;
-import ml.kf.qv.swing.larrv.view.LarrView;
+import ml.kf.qv.swing.larrv.Effect;
+import ml.kf.qv.swing.larrv.ElementColor;
+import ml.kf.qv.swing.larrv.LarrStyle;
+import ml.kf.qv.swing.larrv.component.LarrElement;
+import ml.kf.qv.swing.larrv.component.LarrView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -125,6 +124,7 @@ public class Main {
         );
 
         JPanel pan = new JPanel();
+        DebugGraphics graphics = new DebugGraphics();
         addAll(pan, add, active, disable, selected, remove,removeAll, change);
         frame.getContentPane().add(larrView, BorderLayout.CENTER);
         frame.getContentPane().add(pan, BorderLayout.NORTH);

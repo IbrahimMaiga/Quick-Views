@@ -1,6 +1,6 @@
 package ml.kf.qv.swing;
 
-import ml.kf.qv.swing.larrv.view.LarrView;
+import ml.kf.qv.swing.larrv.component.LarrView;
 
 import javax.swing.*;
 

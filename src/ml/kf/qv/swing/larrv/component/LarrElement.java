@@ -1,4 +1,4 @@
-package ml.kf.qv.swing.larrv.view;
+package ml.kf.qv.swing.larrv.component;
 
 import javax.swing.*;
 
@@ -18,7 +18,7 @@ public class LarrElement {
      * Create a new <code>LarrELement</code> with panel title and right component used for <code>LarrComponent</code>
      * in <LarrView></LarrView>
      * @see LarrView
-     * @see ml.kf.qv.swing.larrv.view.LarrView.LarrComponent
+     * @see ml.kf.qv.swing.larrv.component.LarrView.LarrComponent
      * @param title
      * @param component
      */

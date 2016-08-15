@@ -23,16 +23,17 @@ import java.util.concurrent.Executors;
 public abstract class Alert extends JWindow implements Runnable, MouseListener{
 
 
-    private static final Dimension MINIMUM_SIZE = new Dimension(300, 100);
-    private static int width;
-    private static int height;
-    private static Point centerPoint;
     private static int MAX = 100;
     private static int MIN = 0;
     private static final float INITIAL = 1.0f;
     protected static long SLEEP_TIME_BEFORE_ANIMATION = 2000;
     protected static long DEAULT_SLEEP_TIME = 40;
     protected static int INCREMENT = 10;
+
+    private static final Dimension MINIMUM_SIZE = new Dimension(300, 100);
+    private static int width;
+    private static int height;
+    private static Point centerPoint;
 
     static {
         width = Toolkit.getDefaultToolkit().getScreenSize().width;
@@ -86,7 +87,7 @@ public abstract class Alert extends JWindow implements Runnable, MouseListener{
     }
 
     /**
-     *
+     * creates a new constructor with specified variables
      * @param posx
      * @param posy
      * @param component
@@ -103,7 +104,7 @@ public abstract class Alert extends JWindow implements Runnable, MouseListener{
     }
 
     /**
-     *
+     * Initialize variables
      * @param component
      * @param icon
      * @param showProgress
@@ -120,7 +121,6 @@ public abstract class Alert extends JWindow implements Runnable, MouseListener{
     }
 
     /**
-     *
      * @param pos
      * @return the location corresponding of pos
      */
@@ -169,10 +169,12 @@ public abstract class Alert extends JWindow implements Runnable, MouseListener{
         this.progress.setMinimumSize(new Dimension(MINIMUM_SIZE.width, PROGRESSBAR_HEIGHT));
         this.progress.setBorderPainted(true);
 
+        JPanel panel = new JPanel();
+        panel.add(this.component);
         this.setAlwaysOnTop(true);
         this.container = new BasePanel();
         this.container.setLayout(new BorderLayout());
-        this.container.add(this.component, BorderLayout.CENTER);
+        this.container.add(panel, BorderLayout.CENTER);
 
         JPanel quitPan = new JPanel(new FlowLayout(FlowLayout.RIGHT, 5, 0));
         quitPan.setOpaque(false);
@@ -216,7 +218,7 @@ public abstract class Alert extends JWindow implements Runnable, MouseListener{
 
     /**
      * Returns location
-     * @return
+     * @return alert position
      */
     public Point getLocation(){
         return this.location;

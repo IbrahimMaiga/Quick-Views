@@ -1,4 +1,4 @@
-package ml.kf.qv.swing.larrv.models;
+package ml.kf.qv.swing.larrv;
 
 import ml.kf.qv.swing.Round;
 import ml.kf.qv.swing.Icon;

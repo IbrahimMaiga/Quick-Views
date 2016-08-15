@@ -1,8 +1,8 @@
-package ml.kf.qv.swing.larrv.view;
+package ml.kf.qv.swing.larrv.component;
 
 import ml.kf.qv.swing.BasePanel;
-import ml.kf.qv.swing.larrv.controller.LarrController;
-import ml.kf.qv.swing.larrv.models.*;
+import ml.kf.qv.swing.larrv.*;
+import ml.kf.qv.swing.larrv.LarrController;
 import ml.kf.qv.swing.tf.*;
 
 import javax.swing.*;
@@ -17,9 +17,6 @@ import java.util.List;
 
 /**
  * @author Kanfa
- *
- *
- * Class <code>LarrView</code>
  */
 public class LarrView extends BasePanel implements KeyListener, Updater {
 
@@ -34,7 +31,6 @@ public class LarrView extends BasePanel implements KeyListener, Updater {
 
     /**
      * Lelt Panel
-     *
      */
     private BasePanel         left;
     /**
@@ -244,7 +240,7 @@ public class LarrView extends BasePanel implements KeyListener, Updater {
     }
 
     /**
-     * create <code>LarrComponents</code>
+     * creates <code>LarrComponents</code>
      */
     private void createLarrComponents() {
         int i = 0;
@@ -261,7 +257,7 @@ public class LarrView extends BasePanel implements KeyListener, Updater {
      * Call the LarrView Controller for verification
      * @param index selected index
      */
-    public void setData(int index){
+    public void setData(final int index){
         this.selectedIndex = index;
         this.controller.control(index);
     }
@@ -313,7 +309,7 @@ public class LarrView extends BasePanel implements KeyListener, Updater {
      * Reset and set larrComponents
      * @param larrComponents
      */
-    public void setLarrComponents(ArrayList<LarrComponent> larrComponents) {
+    public void setLarrComponents(final ArrayList<LarrComponent> larrComponents) {
         this.larrComponents.stream().filter(larrComponent -> larrComponent.isSelected()).forEach(larrComponent -> {
             larrComponent.setSelected(false);
             larrComponent.init();
@@ -355,13 +351,13 @@ public class LarrView extends BasePanel implements KeyListener, Updater {
         this.larrElements.remove(index);
     }
 
-    private void removeAll(JComponent... components){
+    private void removeAll(final JComponent... components){
         for (JComponent component : components){
             component.removeAll();
         }
     }
 
-    private void revalidateAll(JComponent... components){
+    private void revalidateAll(final JComponent... components){
         for (JComponent component : components){
             component.revalidate();
         }
@@ -431,11 +427,11 @@ public class LarrView extends BasePanel implements KeyListener, Updater {
         this.lastSelectedIndex = lastSelectedIndex;
     }
 
-    private void changeSearchIcon(String searchIcon){
+    private void changeSearchIcon(final String searchIcon){
         this.searchField.changeIcon(searchIcon);
     }
 
-    public void setSearchIcon(String searchIcon){
+    public void setSearchIcon(final String searchIcon){
         if (this.active){
             this.searchIcon = searchIcon;
             this.changeSearchIcon(searchIcon);
@@ -625,7 +621,7 @@ public class LarrView extends BasePanel implements KeyListener, Updater {
          * Resize <code>LarrComponent</code>
          * @param dimension resize dimension
          */
-        public void resizeLarrComponent(Dimension dimension){
+        public void resizeLarrComponent(final Dimension dimension){
             this.dimension = dimension;
             this.removeAll();
             this.addElements();
@@ -677,7 +673,7 @@ public class LarrView extends BasePanel implements KeyListener, Updater {
          * @param receive
          * @param component
          */
-        private void addTo(JPanel receive, JComponent component){
+        private void addTo(final JPanel receive, final JComponent component){
             receive.removeAll();
             if (receive.getLayout() instanceof BorderLayout){
                 receive.add(component, BorderLayout.CENTER);

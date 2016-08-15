@@ -56,4 +56,8 @@ public class InfoAlert extends Alert{
         return new RoundRectangle2D.Double(0, 0, this.getWidth(), this.getHeight(),
                                            this.round.getArcx(), this.round.getArcy());
     }
+
+    public static void main(String[] args){
+        new InfoAlert(100, 100, new JCheckBox("Kanfa"));
+    }
 }
