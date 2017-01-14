@@ -1,25 +1,25 @@
-package ml.kf.main;
+package ml.kanfa.demo;
 
 import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
-import ml.kf.qv.swing.*;
-import ml.kf.qv.swing.Icon;
-import ml.kf.qv.swing.larrv.Effect;
-import ml.kf.qv.swing.larrv.ElementColor;
-import ml.kf.qv.swing.larrv.LarrStyle;
-import ml.kf.qv.swing.larrv.component.LarrElement;
-import ml.kf.qv.swing.larrv.component.LarrView;
+import ml.kanfa.qv.swing.*;
+import ml.kanfa.qv.swing.Icon;
+import ml.kanfa.qv.swing.components.alert.InfoAlert;
+import ml.kanfa.qv.swing.components.larrv.Effect;
+import ml.kanfa.qv.swing.components.larrv.ElementColor;
+import ml.kanfa.qv.swing.components.larrv.LarrStyle;
+import ml.kanfa.qv.swing.components.larrv.LarrElement;
+import ml.kanfa.qv.swing.components.larrv.LarrView;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
 /**
+ * Class Demo
  *
- * @author Kanfa.
- *
- * CLass Main
+ * @author Ibrahim Maïga.
  */
-public class Main {
+public class Demo {
 
     /**
      * Method main
@@ -40,15 +40,12 @@ public class Main {
 
     private static void createFrame(){
         JFrame frame = new JFrame("LarrView Demo");
-        frame.setSize(800, 400);
-        frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(new BorderLayout());
         ArrayList<LarrElement> larrElements = new ArrayList<>();
         for (int i = 0; i < 8; i++){
             larrElements.add(new LarrElement("Panel Title " + i, new JLabel("View " + i)));
         }
-
         LarrStyle style = new LarrStyle(
                 new Round(20, 20),
                 new Effect(
@@ -71,7 +68,15 @@ public class Main {
         JButton remove = new JButton("Supprimer");
         JButton removeAll = new JButton("Tout Supprimer");
         JButton change = new JButton("Changer l'icone du champs recherche");
-
+        JButton alert = new JButton("Afficher une Alerte");
+        add.setToolTipText("Ajouter un nouveau Larrview dans la liste");
+        active.setToolTipText("Activer le champs de saisie.");
+        disable.setToolTipText("Désactiver le champs de saisie.");
+        selected.setToolTipText("Afficher le nom du LarrView Selectionné");
+        remove.setToolTipText("Supprimer le LarrView");
+        removeAll.setToolTipText("Supprimer tout les LarrView du conteneur");
+        change.setToolTipText("Changer l'icone du champ de saisie.");
+        alert.setToolTipText("Afficher une alerte de type Information");
         add.addActionListener(e -> {
             int index = larrView.getLastIndex();
             larrView.addLarrComponent(new LarrElement("Other Panel Title " + index,
@@ -89,10 +94,10 @@ public class Main {
         selected.addActionListener(
                 e -> {
                     if (larrView.getSelected() != null){
-                        System.out.println(larrView.getSelected().getTitle());
+                        JOptionPane.showMessageDialog(null, larrView.getSelected().getTitle());
                     }
                     else{
-                        System.out.println("Aucune selection");
+                        JOptionPane.showMessageDialog(null, "Aucune Selection");
                     }
                 }
         );
@@ -118,16 +123,20 @@ public class Main {
                     }
                 }
         );
-
         change.addActionListener(
                 e -> larrView.setSearchIcon("other_search_icon.png")
         );
-
+        alert.addActionListener(e -> {
+            JLabel label = new JLabel("Kanfa");
+            label.setBackground(Color.GREEN);
+            new InfoAlert(100, 100, label);
+        });
         JPanel pan = new JPanel();
-        DebugGraphics graphics = new DebugGraphics();
-        addAll(pan, add, active, disable, selected, remove,removeAll, change);
+        addAll(pan, add, active, disable, selected, remove,removeAll, change, alert);
         frame.getContentPane().add(larrView, BorderLayout.CENTER);
         frame.getContentPane().add(pan, BorderLayout.NORTH);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 
