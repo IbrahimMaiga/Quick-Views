@@ -1,29 +1,32 @@
-package ml.kf.qv.swing;
+package ml.kanfa.qv.swing;
 
 import java.awt.Color;
 
 import javax.swing.*;
 
 /**
- * @author Kanfa.
- *
+ * @author Ibrahim Maïga.
  *
  * class BasePanel
  */
 public class BasePanel extends JPanel{
 
     /**
-     * <code>BasePanel</code> Background color
+     * Default background color
      */
     private static final Color COLOR = Color.WHITE;
 
     /**
-     * Create a new <code>BasePanel</code> with background color white
+     * Creates a new <code>BasePanel</code> with define color
+     * @param color background color
      */
     public BasePanel(Color color){
         this.setBackground(color);
     }
 
+    /**
+     * Create a new <code>BasePanel</code> with default background color
+     */
     public BasePanel(){
         this(COLOR);
     }

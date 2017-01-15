@@ -1,15 +1,12 @@
-package ml.kf.qv.swing.larrv;
-
-import ml.kf.qv.swing.larrv.component.LarrView;
+package ml.kanfa.qv.swing.components.larrv;
 
 /**
- * @author Kanfa.
- *
  * Interface Updater
  *
  * @see LarrView.LarrComponent
+ *
+ * @author Ibrahim Maïga.
  */
-
 public interface Updater {
     void deselect(int selectedIndex);
     void up(int currentIndex);

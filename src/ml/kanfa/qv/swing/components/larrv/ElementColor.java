@@ -1,14 +1,20 @@
-package ml.kf.qv.swing.larrv;
+package ml.kanfa.qv.swing.components.larrv;
 
 import java.awt.*;
 
 /**
- * @author Kanfa.
- *
  * Class ElementColor
+ *
+ * @author Ibrahim Maïga.
  */
-
 public class ElementColor {
+
+    /**
+     * Default element color
+     */
+    private static Color defaultBackground = Color.WHITE;
+    private static Color defaultForegroundColor = Color.BLACK;
+    private static Color defaultBorderColor = Color.BLACK;
 
     /**
      * Background color
@@ -24,17 +30,6 @@ public class ElementColor {
      * Border color
      */
     private Color borderColor;
-
-
-    /**
-     * Default element color
-     */
-    private static Color defaultBackground = Color.WHITE;
-
-    private static Color defaultForegroundColor = Color.BLACK;
-
-    private static Color defaultBorderColor = Color.BLACK;
-
 
     /**
      * Creaete a new <code>ElementColor</code> with specified colors
@@ -54,10 +49,6 @@ public class ElementColor {
     public ElementColor(){
         this(defaultBackground, defaultForegroundColor, defaultBorderColor);
     }
-
-    /**
-     * Getter an setter
-     */
 
     public Color getBackgroundColor() {
         return backgroundColor;
@@ -82,5 +73,4 @@ public class ElementColor {
     public void setBorderColor(Color borderColor) {
         this.borderColor = borderColor;
     }
-
 }

@@ -1,7 +1,7 @@
-package ml.kf.qv.swing.alert;
+package ml.kanfa.qv.swing.components.alert;
 
-import ml.kf.qv.swing.*;
-import ml.kf.qv.swing.Icon;
+import ml.kanfa.qv.swing.*;
+import ml.kanfa.qv.swing.Icon;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -10,9 +10,9 @@ import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 
 /**
- * @author Kanfa
+ * Class InfoAlert
  *
- * Class <code>InfoAlert</code>
+ * @author Ibrahim Maïga.
  */
 public class InfoAlert extends Alert{
 
@@ -31,7 +31,7 @@ public class InfoAlert extends Alert{
 
     public InfoAlert(int posx, int posy, JComponent component){
         this(posx, posy, component, (new Icon("info-60x60.png")).getIcon(),
-             true, new Round(), DEAULT_SLEEP_TIME);
+             false, new Round(), DEAULT_SLEEP_TIME);
     }
 
     @Override public void customize() {}
@@ -41,7 +41,7 @@ public class InfoAlert extends Alert{
     }
 
     @Override protected Color progressForeground() {
-        return Color.WHITE;
+        return Color.GREEN;
     }
 
     @Override protected Border progressBorder() {
@@ -55,9 +55,5 @@ public class InfoAlert extends Alert{
     @Override protected Shape shape() {
         return new RoundRectangle2D.Double(0, 0, this.getWidth(), this.getHeight(),
                                            this.round.getArcx(), this.round.getArcy());
-    }
-
-    public static void main(String[] args){
-        new InfoAlert(100, 100, new JCheckBox("Kanfa"));
     }
 }

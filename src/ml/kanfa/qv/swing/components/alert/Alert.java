@@ -1,10 +1,8 @@
-package ml.kf.qv.swing.alert;
+package ml.kanfa.qv.swing.components.alert;
 
 import com.sun.awt.AWTUtilities;
-import com.sun.java.swing.plaf.windows.WindowsProgressBarUI;
-import ml.kf.qv.swing.BasePanel;
-import ml.kf.qv.swing.KFProgressBarUI;
-import ml.kf.qv.swing.Round;
+import ml.kanfa.qv.swing.BasePanel;
+import ml.kanfa.qv.swing.Round;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -16,13 +14,16 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * @author Kanfa
- *
  * Class Alert
+ *
+ * @author Ibrahim Maïga.
  */
 public abstract class Alert extends JWindow implements Runnable, MouseListener{
 
-
+    private static final Dimension MINIMUM_SIZE = new Dimension(300, 100);
+    private static int width;
+    private static int height;
+    private static Point centerPoint;
     private static int MAX = 100;
     private static int MIN = 0;
     private static final float INITIAL = 1.0f;
@@ -30,10 +31,6 @@ public abstract class Alert extends JWindow implements Runnable, MouseListener{
     protected static long DEAULT_SLEEP_TIME = 40;
     protected static int INCREMENT = 10;
 
-    private static final Dimension MINIMUM_SIZE = new Dimension(300, 100);
-    private static int width;
-    private static int height;
-    private static Point centerPoint;
 
     static {
         width = Toolkit.getDefaultToolkit().getScreenSize().width;
@@ -160,16 +157,15 @@ public abstract class Alert extends JWindow implements Runnable, MouseListener{
         this.addMouseListener(this);
         this.progress = new JProgressBar(JProgressBar.HORIZONTAL);
         this.progress.setIndeterminate(false);
-        this.progress.setUI(new WindowsProgressBarUI());
         this.progress.setBorder(progressBorder());
         this.progress.setBackground(progressBackground());
         this.progress.setForeground(progressForeground());
         this.progress.setValue(MAX);
-        this.progress.setUI(new KFProgressBarUI());
         this.progress.setMinimumSize(new Dimension(MINIMUM_SIZE.width, PROGRESSBAR_HEIGHT));
         this.progress.setBorderPainted(true);
-
+        this.component.setOpaque(false);
         JPanel panel = new JPanel();
+        panel.setOpaque(false);
         panel.add(this.component);
         this.setAlwaysOnTop(true);
         this.container = new BasePanel();
@@ -271,7 +267,7 @@ public abstract class Alert extends JWindow implements Runnable, MouseListener{
     }
 
     /*
-       Abstract methods
+     * Abstract methods
      */
     protected abstract void customize();
 

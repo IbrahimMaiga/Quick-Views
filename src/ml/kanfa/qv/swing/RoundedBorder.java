@@ -1,12 +1,12 @@
-package ml.kf.qv.swing;
+package ml.kanfa.qv.swing;
 
 import javax.swing.border.Border;
 import java.awt.*;
 
 /**
- * @author Kanfa.
+ * Class RoundedBorder
  *
- * Class <code>RoundedBorder</code>
+ * @author Ibrahim Maïga.
  */
 public class RoundedBorder implements Border{
 
@@ -31,7 +31,6 @@ public class RoundedBorder implements Border{
     /**
      * Border default Color
      */
-
     private static final Color DEFAULT_COLOR = new Color(128, 128, 128);
 
     /**

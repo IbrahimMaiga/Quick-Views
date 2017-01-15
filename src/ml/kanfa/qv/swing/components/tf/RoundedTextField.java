@@ -1,11 +1,11 @@
-package ml.kf.qv.swing.tf;
+package ml.kanfa.qv.swing.components.tf;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 
-import ml.kf.qv.swing.Round;
-import ml.kf.qv.swing.Icon;
+import ml.kanfa.qv.swing.Round;
+import ml.kanfa.qv.swing.Icon;
 
 /**
  * @author  Kanfa.
@@ -16,16 +16,17 @@ import ml.kf.qv.swing.Icon;
 public class RoundedTextField extends JTextField{
 
     /**
+     * Insets
+     */
+    private static final int INSET = 4;
+
+    /**
      * Instance variables
      */
     private Image image;
     private ImageIcon icon;
     private Shape shape;
     private Round round;
-
-
-    private static final int INSET = 4;
-
 
     /**
      * Create a new Constructor with icon name and round arc
@@ -48,7 +49,7 @@ public class RoundedTextField extends JTextField{
 
     /**
      * Create a new constructor with default values
-     * @param round
+     * @param round round value
      */
    public RoundedTextField(Round round){
        this("", round);
@@ -80,7 +81,6 @@ public class RoundedTextField extends JTextField{
     /**
      * Paints the component's border.
      * @param g  the <code>Graphics</code> context in which to paint
-     *
      */
     @Override protected void paintBorder(Graphics g) {
         Graphics2D g2d = (Graphics2D)g;

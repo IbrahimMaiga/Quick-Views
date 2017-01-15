@@ -1,17 +1,20 @@
-package ml.kf.qv.swing.larrv;
+package ml.kanfa.qv.swing.components.larrv;
 
-import ml.kf.qv.swing.Round;
-import ml.kf.qv.swing.Icon;
+import ml.kanfa.qv.swing.Round;
+import ml.kanfa.qv.swing.Icon;
 
 import javax.swing.*;
 import java.awt.*;
 
 /**
- * @author Kanfa.
- *
  * Class LarrStyle
+ * @author Ibrahim Maïga.
  */
 public class LarrStyle {
+
+    public static final int ENTERED = 1;
+    public static final int EXITED = 2;
+    public static final int SELECTED = 3;
 
     /**
      * Round value and Color effect
@@ -20,18 +23,11 @@ public class LarrStyle {
     private Effect effect;
     private Icon icon;
 
-    public static final int ENTERED = 1;
-    public static final int EXITED = 2;
-    public static final int SELECTED = 3;
-
     /**
      * Create a new <code>LarrStyle</code> with specified params
-     * @see Round
-     * @see Effect
-     * @see Icon
-     * @param round
-     * @param effect
-     * @param icon
+     * @param round @see {@link Round}
+     * @param effect @see {@link Effect}
+     * @param icon @see {@link Icon}
      */
     public LarrStyle(Round round, Effect effect, Icon icon){
         this.round = round;
@@ -41,14 +37,10 @@ public class LarrStyle {
 
     /**
      * Create a new <code>LarrStyle</code> with default values
-     * @see Round
-     * @see Effect
-     * @see Icon
      */
     public LarrStyle(){
         this(new Round(), new Effect(), new Icon());
     }
-
 
     /**
      * @param element
@@ -70,10 +62,6 @@ public class LarrStyle {
     public int getArcy(){
         return this.round.getArcy();
     }
-
-    /**
-     * Setter
-     */
 
     public void setRound(Round round) {
         this.round = round;

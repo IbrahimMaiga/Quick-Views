@@ -1,18 +1,17 @@
-package ml.kf.qv.swing;
+package ml.kanfa.qv.swing;
 
 /**
+ * @author Ibrahim Maïga.
  *
- * @author Kanfa.
- *
+ * Class Round
  */
 public class Round {
 
+    private static int DEFAULT_ARCX = 5;
+    private static int DEFAULT_ARCY = 5;
 
     private int arcx;
     private int arcy;
-
-    private static int DEFAULT_ARCX = 5;
-    private static int DEFAULT_ARCY = 5;
 
     public Round(int arcx, int arcy){
         this.arcx = arcx;

@@ -1,47 +1,13 @@
-package ml.kf.qv.swing.larrv;
+package ml.kanfa.qv.swing.components.larrv;
 
 import java.awt.*;
 
 /**
- * @author Kanfa.
- *
  * Class Effect
+ *
+ * @author Ibrahim Maïga.
  */
 public class Effect {
-
-    /**
-     * Mouse entered color values for background, foreground and border
-     */
-    private ElementColor entered;
-
-    /**
-     * Mouse existed color values for background, foreground and border
-     */
-
-    private ElementColor exited;
-
-    /**
-     * Mouse clicked color values for background, foreground and border
-     */
-
-    private ElementColor selected;
-
-    /**
-     * Default element color for mouse entered
-     */
-    private final static ElementColor ENTERED = new ElementColor(Color.BLACK, Color.WHITE, Color.GREEN);
-
-    /**
-     * Default element color for mouse clicked
-     */
-
-    private final static ElementColor SELECTED = new ElementColor(Color.WHITE, Color.BLACK, Color.BLACK);
-
-    /**
-     * Default element color for mouse exited
-     */
-
-    private final static ElementColor EXITED = new ElementColor();
 
     /**
      * Action types
@@ -56,6 +22,37 @@ public class Effect {
     private static final String BORDER = "Border";
     private static final String FOREGROUND = "Foreground";
     private static final String BACKGROUND = "Background";
+
+    /**
+     * Mouse entered color values for background, foreground and border
+     */
+    private ElementColor entered;
+
+    /**
+     * Mouse existed color values for background, foreground and border
+     */
+    private ElementColor exited;
+
+    /**
+     * Mouse clicked color values for background, foreground and border
+     */
+    private ElementColor selected;
+
+    /**
+     * Default element color for mouse entered
+     */
+    private final static ElementColor ENTERED = new ElementColor(Color.BLACK, Color.WHITE, Color.GREEN);
+
+    /**
+     * Default element color for mouse clicked
+     */
+    private final static ElementColor SELECTED = new ElementColor(Color.WHITE, Color.BLACK, Color.BLACK);
+
+    /**
+     * Default element color for mouse exited
+     */
+    private final static ElementColor EXITED = new ElementColor();
+
 
     /**
      * Create a new <code>Effect</code> with specified <code>ElementColor</code>
